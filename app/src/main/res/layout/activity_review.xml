@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/reviewProgressTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="复习进度: 1/10"
+            android:textSize="16sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/reviewWordTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="example"
+            android:textSize="32sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:id="@+id/reviewPronunciationTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="/ɪɡˈzæmpl/"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/playWordButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="播放发音"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="意思："
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/reviewMeaningTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="例子，实例"
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="例句："
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:id="@+id/reviewExampleSentenceTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="This is an example sentence."
+            android:textSize="16sp"
+            android:layout_marginBottom="16dp"/>
+
+        <Button
+            android:id="@+id/playSentenceButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="播放例句"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="发音检查："
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="8dp">
+
+            <EditText
+                android:id="@+id/pronunciationInput"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:hint="输入发音或点击录音"
+                android:inputType="text"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/recordPronunciationButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="录音"/>
+
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/checkPronunciationButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="检查发音"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="意思检查："
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/meaningInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="输入意思"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/checkMeaningButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="检查意思"
+            android:layout_marginBottom="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="造句检查："
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginBottom="8dp"/>
+
+        <EditText
+            android:id="@+id/sentenceInput"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="用该单词造句"
+            android:inputType="textMultiLine"
+            android:minLines="2"
+            android:layout_marginBottom="8dp"/>
+
+        <Button
+            android:id="@+id/checkSentenceButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="检查造句"
+            android:layout_marginBottom="16dp"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="16dp">
+
+            <Button
+                android:id="@+id/nextReviewButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="下一个"
+                android:layout_marginEnd="8dp"/>
+
+            <Button
+                android:id="@+id/finishReviewButton"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="完成复习"
+                android:backgroundTint="#4CAF50"
+                android:layout_marginStart="8dp"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>
