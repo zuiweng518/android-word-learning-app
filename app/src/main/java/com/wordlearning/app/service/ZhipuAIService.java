@@ -20,7 +20,6 @@ import okhttp3.Response;
 public class ZhipuAIService {
     private static final String TAG = "ZhipuAIService";
     private static final String API_URL = "https://open.bigmodel.cn/api/paas/v4/chat/completions";
-    private static final String API_KEY = "c164674e4cd14cf8a7e0071bc2a3e3aa.hXVRPuErxKuYKEL3";
     
     private OkHttpClient client;
     private Gson gson;
@@ -88,7 +87,7 @@ public class ZhipuAIService {
 
                 Request request = new Request.Builder()
                         .url(API_URL)
-                        .addHeader("Authorization", "Bearer " + API_KEY)
+                        .addHeader("Authorization", "Bearer " + getApiKey())
                         .post(body)
                         .build();
 
@@ -159,7 +158,7 @@ public class ZhipuAIService {
 
                 Request request = new Request.Builder()
                         .url(API_URL)
-                        .addHeader("Authorization", "Bearer " + API_KEY)
+                        .addHeader("Authorization", "Bearer " + getApiKey())
                         .post(body)
                         .build();
 
@@ -223,7 +222,7 @@ public class ZhipuAIService {
 
                 Request request = new Request.Builder()
                         .url(API_URL)
-                        .addHeader("Authorization", "Bearer " + API_KEY)
+                        .addHeader("Authorization", "Bearer " + getApiKey())
                         .post(body)
                         .build();
 
@@ -346,5 +345,9 @@ public class ZhipuAIService {
     public interface SentenceCheckCallback {
         void onSentenceChecked(boolean isCorrect);
         void onError(String error);
+    }
+
+    private String getApiKey() {
+        return SettingsActivity.getZhipuApiKey(context);
     }
 }

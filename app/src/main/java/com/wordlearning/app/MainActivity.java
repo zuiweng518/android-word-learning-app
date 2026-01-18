@@ -48,11 +48,13 @@ public class MainActivity extends AppCompatActivity {
         Button importWordsButton = findViewById(R.id.importWordsButton);
         Button mistakeBookButton = findViewById(R.id.mistakeBookButton);
         Button reviewButton = findViewById(R.id.reviewButton);
+        Button settingsButton = findViewById(R.id.settingsButton);
         
         startLearningButton.setOnClickListener(v -> startLearning());
         importWordsButton.setOnClickListener(v -> importWords());
         mistakeBookButton.setOnClickListener(v -> openMistakeBook());
         reviewButton.setOnClickListener(v -> startReview());
+        settingsButton.setOnClickListener(v -> openSettings());
     }
 
     private void checkPermissions() {
@@ -88,6 +90,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void startReview() {
         Intent intent = new Intent(this, ReviewActivity.class);
+        startActivity(intent);
+    }
+
+    private void openSettings() {
+        Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
 

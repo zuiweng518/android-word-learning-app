@@ -59,6 +59,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="开始复习"
+        android:textSize="16sp"
+        android:layout_marginBottom="16dp"/>
+
+    <Button
+        android:id="@+id/settingsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置"
         android:textSize="16sp"/>
 
 </LinearLayout>

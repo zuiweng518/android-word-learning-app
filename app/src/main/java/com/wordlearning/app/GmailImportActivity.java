@@ -12,12 +12,12 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.wordlearning.app.database.DatabaseHelper;
 import com.wordlearning.app.model.Word;
-import com.wordlearning.app.service.GmailService;
+import com.wordlearning.app.service.EmailService;
 
 import java.util.List;
 
 public class GmailImportActivity extends AppCompatActivity {
-    private GmailService gmailService;
+    private EmailService emailService;
     private DatabaseHelper dbHelper;
     
     private TextView statusTextView;
@@ -54,9 +54,9 @@ public class GmailImportActivity extends AppCompatActivity {
     }
 
     private void initGmailService() {
-        gmailService = new GmailService(this, new GmailService.WordImportCallback() {
+        emailService = new EmailService(this, new EmailService.EmailImportCallback() {
             @Override
-            public void onWordsImported(List<String> words) {
+            public void onEmailsImported(List<String> words) {
                 importedWords = words;
                 processImportedWords();
             }
@@ -74,9 +74,9 @@ public class GmailImportActivity extends AppCompatActivity {
     private void startImport() {
         importButton.setEnabled(false);
         progressBar.setVisibility(View.VISIBLE);
-        statusTextView.setText("正在从Gmail读取邮件...");
+        statusTextView.setText("正在从邮箱读取邮件...");
         
-        gmailService.importWordsFromGmail();
+        emailService.importWordsFromEmail();
     }
 
     private void processImportedWords() {
@@ -135,9 +135,6 @@ public class GmailImportActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == 1001 && resultCode == RESULT_OK) {
-            gmailService.importWordsFromGmail();
-        }
     }
 
     @Override

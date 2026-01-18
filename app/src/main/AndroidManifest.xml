@@ -61,6 +61,11 @@
             android:exported="false"
             android:theme="@style/Theme.WordLearningApp" />
         
+        <activity
+            android:name=".SettingsActivity"
+            android:exported="false"
+            android:theme="@style/Theme.WordLearningApp" />
+        
         <service
             android:name=".service.WordLearningService"
             android:enabled="true"
