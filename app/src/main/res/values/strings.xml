@@ -71,27 +71,4 @@
     <string name="api_key">API密钥：</string>
     <string name="enter_api_key">请输入智谱AI API密钥</string>
     <string name="gmail_settings">Gmail设置</string>
-    <string name="email_address">邮箱地址：</string>
-    <string name="email_hint">example@gmail.com</string>
-    <string name="auth_method">认证方式：</string>
-    <string name="oauth_auth">OAuth认证</string>
-    <string name="password_auth">密码认证</string>
-    <string name="password_auth_settings">密码认证设置</string>
-    <string name="email_password">邮箱密码：</string>
-    <string name="enter_email_password">请输入邮箱密码</string>
-    <string name="pop3_server">POP3服务器：</string>
-    <string name="pop3_hint">pop.gmail.com</string>
-    <string name="pop3_port">POP3端口：</string>
-    <string name="pop3_port_hint">995</string>
-    <string name="smtp_server">SMTP服务器：</string>
-    <string name="smtp_hint">smtp.gmail.com</string>
-    <string name="smtp_port">SMTP端口：</string>
-    <string name="smtp_port_hint">587</string>
-    <string name="settings_saved">设置已保存</string>
-    <string name="enter_api_key">请输入智谱AI API密钥</string>
-    <string name="enter_email_address">请输入Gmail邮箱地址</string>
-    <string name="enter_email_password">请输入Gmail密码</string>
-    <string name="reading_email">正在从邮箱读取邮件...</string>
-    <string name="oauth_not_supported">OAuth认证暂不支持，请使用密码认证</string>
-    <string name="configure_email_password">请先在设置中配置邮箱地址和密码</string>
 </resources>
