@@ -52,15 +52,10 @@ public class EmailService {
             try {
                 List<String> words = new ArrayList<>();
                 
-                String email = SettingsActivity.getGmailAddress(context);
-                String password = SettingsActivity.getGmailPassword(context);
+                String email = SettingsActivity.getEmailAddress(context);
+                String password = SettingsActivity.getEmailPassword(context);
                 String pop3Server = SettingsActivity.getPop3Server(context);
                 String pop3Port = SettingsActivity.getPop3Port(context);
-                
-                if (SettingsActivity.isOAuthAuth(context)) {
-                    error = "OAuth认证暂不支持，请使用密码认证";
-                    return null;
-                }
                 
                 if (email.isEmpty() || password.isEmpty()) {
                     error = "请先在设置中配置邮箱地址和密码";
@@ -130,8 +125,8 @@ public class EmailService {
 
     public boolean sendTestEmail(String to, String subject, String content) {
         try {
-            String email = SettingsActivity.getGmailAddress(context);
-            String password = SettingsActivity.getGmailPassword(context);
+            String email = SettingsActivity.getEmailAddress(context);
+            String password = SettingsActivity.getEmailPassword(context);
             String smtpServer = SettingsActivity.getSmtpServer(context);
             String smtpPort = SettingsActivity.getSmtpPort(context);
             

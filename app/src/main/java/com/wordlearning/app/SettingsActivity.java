@@ -15,19 +15,19 @@ import androidx.appcompat.app.AppCompatActivity;
 public class SettingsActivity extends AppCompatActivity {
     private static final String PREFS_NAME = "AppSettings";
     private static final String ZHIPU_API_KEY = "zhipu_api_key";
-    private static final String GMAIL_ADDRESS = "gmail_address";
-    private static final String GMAIL_PASSWORD = "gmail_password";
-    private static final String GMAIL_POP3_SERVER = "gmail_pop3_server";
-    private static final String GMAIL_POP3_PORT = "gmail_pop3_port";
-    private static final String GMAIL_SMTP_SERVER = "gmail_smtp_server";
-    private static final String GMAIL_SMTP_PORT = "gmail_smtp_port";
+    private static final String EMAIL_ADDRESS = "email_address";
+    private static final String EMAIL_PASSWORD = "email_password";
+    private static final String POP3_SERVER = "pop3_server";
+    private static final String POP3_PORT = "pop3_port";
+    private static final String SMTP_SERVER = "smtp_server";
+    private static final String SMTP_PORT = "smtp_port";
     private static final String AUTH_METHOD = "auth_method";
 
     private SharedPreferences prefs;
 
     private EditText zhipuApiKeyEditText;
-    private EditText gmailAddressEditText;
-    private EditText gmailPasswordEditText;
+    private EditText emailAddressEditText;
+    private EditText emailPasswordEditText;
     private EditText pop3ServerEditText;
     private EditText pop3PortEditText;
     private EditText smtpServerEditText;
@@ -51,8 +51,8 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void initViews() {
         zhipuApiKeyEditText = findViewById(R.id.zhipuApiKeyEditText);
-        gmailAddressEditText = findViewById(R.id.gmailAddressEditText);
-        gmailPasswordEditText = findViewById(R.id.gmailPasswordEditText);
+        emailAddressEditText = findViewById(R.id.gmailAddressEditText);
+        emailPasswordEditText = findViewById(R.id.gmailPasswordEditText);
         pop3ServerEditText = findViewById(R.id.pop3ServerEditText);
         pop3PortEditText = findViewById(R.id.pop3PortEditText);
         smtpServerEditText = findViewById(R.id.smtpServerEditText);
@@ -69,17 +69,17 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void loadSettings() {
         String zhipuApiKey = prefs.getString(ZHIPU_API_KEY, "");
-        String gmailAddress = prefs.getString(GMAIL_ADDRESS, "");
-        String gmailPassword = prefs.getString(GMAIL_PASSWORD, "");
-        String pop3Server = prefs.getString(GMAIL_POP3_SERVER, "pop.gmail.com");
-        String pop3Port = prefs.getString(GMAIL_POP3_PORT, "995");
-        String smtpServer = prefs.getString(GMAIL_SMTP_SERVER, "smtp.gmail.com");
-        String smtpPort = prefs.getString(GMAIL_SMTP_PORT, "587");
-        String authMethod = prefs.getString(AUTH_METHOD, "oauth");
+        String emailAddress = prefs.getString(EMAIL_ADDRESS, "");
+        String emailPassword = prefs.getString(EMAIL_PASSWORD, "");
+        String pop3Server = prefs.getString(POP3_SERVER, "pop.126.com");
+        String pop3Port = prefs.getString(POP3_PORT, "110");
+        String smtpServer = prefs.getString(SMTP_SERVER, "smtp.126.com");
+        String smtpPort = prefs.getString(SMTP_PORT, "25");
+        String authMethod = prefs.getString(AUTH_METHOD, "password");
 
         zhipuApiKeyEditText.setText(zhipuApiKey);
-        gmailAddressEditText.setText(gmailAddress);
-        gmailPasswordEditText.setText(gmailPassword);
+        emailAddressEditText.setText(emailAddress);
+        emailPasswordEditText.setText(emailPassword);
         pop3ServerEditText.setText(pop3Server);
         pop3PortEditText.setText(pop3Port);
         smtpServerEditText.setText(smtpServer);
@@ -96,37 +96,37 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void saveSettings() {
         String zhipuApiKey = zhipuApiKeyEditText.getText().toString().trim();
-        String gmailAddress = gmailAddressEditText.getText().toString().trim();
-        String gmailPassword = gmailPasswordEditText.getText().toString().trim();
+        String emailAddress = emailAddressEditText.getText().toString().trim();
+        String emailPassword = emailPasswordEditText.getText().toString().trim();
         String pop3Server = pop3ServerEditText.getText().toString().trim();
         String pop3Port = pop3PortEditText.getText().toString().trim();
         String smtpServer = smtpServerEditText.getText().toString().trim();
         String smtpPort = smtpPortEditText.getText().toString().trim();
-        String authMethod = oauthRadioButton.isChecked() ? "oauth" : "password";
+        String authMethod = passwordRadioButton.isChecked() ? "password" : "oauth";
 
         if (TextUtils.isEmpty(zhipuApiKey)) {
             Toast.makeText(this, "请输入智谱AI API密钥", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if (TextUtils.isEmpty(gmailAddress)) {
-            Toast.makeText(this, "请输入Gmail邮箱地址", Toast.LENGTH_SHORT).show();
+        if (TextUtils.isEmpty(emailAddress)) {
+            Toast.makeText(this, "请输入邮箱地址", Toast.LENGTH_SHORT).show();
             return;
         }
 
-        if ("password".equals(authMethod) && TextUtils.isEmpty(gmailPassword)) {
-            Toast.makeText(this, "请输入Gmail密码", Toast.LENGTH_SHORT).show();
+        if ("password".equals(authMethod) && TextUtils.isEmpty(emailPassword)) {
+            Toast.makeText(this, "请输入邮箱密码", Toast.LENGTH_SHORT).show();
             return;
         }
 
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(ZHIPU_API_KEY, zhipuApiKey);
-        editor.putString(GMAIL_ADDRESS, gmailAddress);
-        editor.putString(GMAIL_PASSWORD, gmailPassword);
-        editor.putString(GMAIL_POP3_SERVER, pop3Server);
-        editor.putString(GMAIL_POP3_PORT, pop3Port);
-        editor.putString(GMAIL_SMTP_SERVER, smtpServer);
-        editor.putString(GMAIL_SMTP_PORT, smtpPort);
+        editor.putString(EMAIL_ADDRESS, emailAddress);
+        editor.putString(EMAIL_PASSWORD, emailPassword);
+        editor.putString(POP3_SERVER, pop3Server);
+        editor.putString(POP3_PORT, pop3Port);
+        editor.putString(SMTP_SERVER, smtpServer);
+        editor.putString(SMTP_PORT, smtpPort);
         editor.putString(AUTH_METHOD, authMethod);
         editor.apply();
 
@@ -136,7 +136,7 @@ public class SettingsActivity extends AppCompatActivity {
 
     private void updateAuthMethodUI() {
         boolean isOAuth = oauthRadioButton.isChecked();
-        gmailPasswordEditText.setEnabled(!isOAuth);
+        emailPasswordEditText.setEnabled(!isOAuth);
         pop3ServerEditText.setEnabled(!isOAuth);
         pop3PortEditText.setEnabled(!isOAuth);
         smtpServerEditText.setEnabled(!isOAuth);
@@ -148,39 +148,39 @@ public class SettingsActivity extends AppCompatActivity {
         return prefs.getString(ZHIPU_API_KEY, "");
     }
 
-    public static String getGmailAddress(Context context) {
+    public static String getEmailAddress(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return prefs.getString(GMAIL_ADDRESS, "");
+        return prefs.getString(EMAIL_ADDRESS, "");
     }
 
-    public static String getGmailPassword(Context context) {
+    public static String getEmailPassword(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return prefs.getString(GMAIL_PASSWORD, "");
+        return prefs.getString(EMAIL_PASSWORD, "");
     }
 
     public static String getPop3Server(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return prefs.getString(GMAIL_POP3_SERVER, "pop.gmail.com");
+        return prefs.getString(POP3_SERVER, "pop.126.com");
     }
 
     public static String getPop3Port(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return prefs.getString(GMAIL_POP3_PORT, "995");
+        return prefs.getString(POP3_PORT, "110");
     }
 
     public static String getSmtpServer(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return prefs.getString(GMAIL_SMTP_SERVER, "smtp.gmail.com");
+        return prefs.getString(SMTP_SERVER, "smtp.126.com");
     }
 
     public static String getSmtpPort(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return prefs.getString(GMAIL_SMTP_PORT, "587");
+        return prefs.getString(SMTP_PORT, "25");
     }
 
     public static String getAuthMethod(Context context) {
         SharedPreferences prefs = context.getSharedPreferences(PREFS_NAME, MODE_PRIVATE);
-        return prefs.getString(AUTH_METHOD, "oauth");
+        return prefs.getString(AUTH_METHOD, "password");
     }
 
     public static boolean isOAuthAuth(Context context) {
