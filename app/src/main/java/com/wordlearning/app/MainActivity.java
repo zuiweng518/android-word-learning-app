@@ -15,19 +15,18 @@ import androidx.core.content.ContextCompat;
 
 import com.wordlearning.app.database.DatabaseHelper;
 import com.wordlearning.app.model.Word;
-import com.wordlearning.app.service.GmailService;
-
+import com.wordlearning.app.service.EmailService;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private static final int REQUEST_RECORD_AUDIO_PERMISSION = 1;
     private static final int REQUEST_STORAGE_PERMISSION = 2;
-    private static final int REQUEST_GMAIL_PERMISSION = 3;
+    private static final int REQUEST_EMAIL_PERMISSION = 3;
     
     private DatabaseHelper dbHelper;
     private TextView wordCountTextView;
     private TextView mistakeCountTextView;
-
+    
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +38,7 @@ public class MainActivity extends AppCompatActivity {
         checkPermissions();
         updateWordCount();
     }
-
+    
     private void initViews() {
         wordCountTextView = findViewById(R.id.wordCountTextView);
         mistakeCountTextView = findViewById(R.id.mistakeCountTextView);
@@ -56,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         reviewButton.setOnClickListener(v -> startReview());
         settingsButton.setOnClickListener(v -> openSettings());
     }
-
+    
     private void checkPermissions() {
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.RECORD_AUDIO) 
                 != PackageManager.PERMISSION_GRANTED) {
@@ -72,32 +71,32 @@ public class MainActivity extends AppCompatActivity {
                     REQUEST_STORAGE_PERMISSION);
         }
     }
-
+    
     private void startLearning() {
         Intent intent = new Intent(this, WordLearningActivity.class);
         startActivity(intent);
     }
-
+    
     private void importWords() {
-        Intent intent = new Intent(this, GmailImportActivity.class);
-        startActivityForResult(intent, REQUEST_GMAIL_PERMISSION);
+        Intent intent = new Intent(this, MistakeBookActivity.class);
+        startActivity(intent);
     }
-
+    
     private void openMistakeBook() {
         Intent intent = new Intent(this, MistakeBookActivity.class);
         startActivity(intent);
     }
-
+    
     private void startReview() {
         Intent intent = new Intent(this, ReviewActivity.class);
         startActivity(intent);
     }
-
+    
     private void openSettings() {
         Intent intent = new Intent(this, SettingsActivity.class);
         startActivity(intent);
     }
-
+    
     private void updateWordCount() {
         List<Word> words = dbHelper.getAllWords();
         wordCountTextView.setText("单词总数: " + words.size());
@@ -105,13 +104,13 @@ public class MainActivity extends AppCompatActivity {
         int mistakeCount = dbHelper.getAllMistakeWords().size();
         mistakeCountTextView.setText("错词数量: " + mistakeCount);
     }
-
+    
     @Override
     protected void onResume() {
         super.onResume();
         updateWordCount();
     }
-
+    
     @Override
     public void onRequestPermissionsResult(int requestCode, String[] permissions, int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -129,16 +128,16 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
+    
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (requestCode == REQUEST_GMAIL_PERMISSION && resultCode == RESULT_OK) {
+        if (requestCode == REQUEST_EMAIL_PERMISSION && resultCode == RESULT_OK) {
             updateWordCount();
             Toast.makeText(this, "单词导入成功", Toast.LENGTH_SHORT).show();
         }
     }
-
+    
     @Override
     protected void onDestroy() {
         super.onDestroy();
