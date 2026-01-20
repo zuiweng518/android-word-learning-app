@@ -28,7 +28,7 @@ android {
     }
 
     packagingOptions {
-        pickFirst 'META-INF/LICENSE*', 'META-INF/NOTICE*', 'META-INF/INDEX.LIST'
+        pickFirsts 'META-INF/LICENSE*', 'META-INF/NOTICE*', 'META-INF/INDEX.LIST'
     }
 }
 
